@@ -1,6 +1,18 @@
 @charset "UTF-8";
-p {
-  color: red;
+body {
+  background-image: url("./images/smile.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+  margin: 0;
+  height: 100vh;
+}
+
+.container .card {
+  min-height: 300px;
+}
+.container .card .joke {
+  min-height: 100px;
 }
 
 /*!
