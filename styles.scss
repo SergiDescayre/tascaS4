@@ -14,4 +14,11 @@ body{
    }
 }
 
+.container_emojis{
+    span{
+        cursor:pointer;
+        font-size: 20px;
+    }
+}
+
 @import "./node_modules/bootstrap/scss/bootstrap.scss"

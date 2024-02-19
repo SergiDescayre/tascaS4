@@ -9,11 +9,25 @@
 </head>
 <body>
     <div class="container pt-5">
-        <span>Avui parcialment ennuvolat</span>
+        <div class="weather">
+            <span>Girona</span>
+            <img src=".." alt="icon">
+        </div>
          <div class="container card text-center shadow pt-4 mt-5 w-50 ">
-            <h3>Ready to laugh? 🤣 </h3>
+            <h3>Ready to laught? 🤣 </h3>
+            <div class="row mt-3 mx-auto container_emojis">
+                <div class="col ">
+                    <span onclick=getScore(1)>🙁</span>
+                </div>
+                <div class="col">
+                    <span onclick=getScore(2)>😐</span>
+                </div>
+                <div class="col">
+                    <span onclick=getScore(3)>😀</span>
+                </div>
+            </div>
             <p class="joke container mt-4"></p>
-            <button class="btn btn-outline-primary btn-sm mb-4 next-joke w-25 mx-auto">Next</button>
+            <button class="btn btn-outline-primary btn-sm mb-4 next-joke mx-auto">Next</button>
         </div>
 
     </div>
