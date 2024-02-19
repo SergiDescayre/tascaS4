@@ -12,7 +12,10 @@ const nextJoke = document.querySelector(".next-joke");
 const printJoke = document.querySelector(".joke");
 const textWeather = document.querySelector(".weather span");
 const iconWeather = document.querySelector(".weather img");
-console.log(iconWeather);
+const degrees = document.querySelector(".degrees");
+const urlWeather = "http://api.weatherapi.com/v1/current.json?key=7bc335c15ed64584a45120452241902&q=barcelona&aqi=no";
+const urlJokes = "https://icanhazdadjoke.com/slack";
+const urlNorris = "https://api.chucknorris.io/jokes/random";
 let youVoted = false;
 const reportAcudits = {
     joke: "",
@@ -21,31 +24,32 @@ const reportAcudits = {
 };
 let reportJokes = [];
 const getWheater = () => __awaiter(void 0, void 0, void 0, function* () {
-    const response = yield fetch("http://api.weatherapi.com/v1/current.json?key=7bc335c15ed64584a45120452241902&q=barcelona&aqi=no");
+    const response = yield fetch(urlWeather);
     const data = yield response.json();
     textWeather.textContent = data.location.name;
     iconWeather.setAttribute("src", data.current.condition.icon);
-    console.log(data.location.name);
+    degrees.textContent = `${data.current.temp_c} °C`;
 });
 const getScore = (num) => {
     youVoted = true;
-    let date = new Date;
     reportAcudits.score = num;
-    reportAcudits.date = date.toISOString();
 };
 const getJoke = () => __awaiter(void 0, void 0, void 0, function* () {
     getWheater();
-    const result = yield fetch("https://icanhazdadjoke.com/slack");
+    let date = new Date;
+    const result = yield fetch(urlNorris);
     const data = yield result.json();
-    const joke = data.attachments[0].fallback;
+    const joke = data.value;
     printJoke.innerHTML = joke;
     reportAcudits.joke = joke;
+    reportAcudits.date = date.toISOString();
     youVoted = false;
+    console.log(joke);
 });
 getJoke();
 const saveAndNaextJoke = () => {
     if (!youVoted) {
-        reportAcudits.score = 0;
+        reportAcudits.score = "No votat";
         reportJokes.push(Object.assign({}, reportAcudits));
     }
     else {

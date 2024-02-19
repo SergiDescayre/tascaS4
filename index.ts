@@ -4,13 +4,17 @@ const printJoke = document.querySelector(".joke") as HTMLParagraphElement
 
 const textWeather = document.querySelector(".weather span") as HTMLHtmlElement
 const iconWeather = document.querySelector(".weather img") as HTMLHtmlElement
-console.log(iconWeather)
+const degrees = document.querySelector(".degrees") as HTMLHtmlElement
+
+const urlWeather: string = "http://api.weatherapi.com/v1/current.json?key=7bc335c15ed64584a45120452241902&q=barcelona&aqi=no"
+const urlJokes: string = "https://icanhazdadjoke.com/slack"
+const urlNorris = "https://api.chucknorris.io/jokes/random"
 
 let youVoted: boolean = false
 
 const reportAcudits: {
     joke: string,
-    score: number,
+    score: number | string,
     date: string
 } = {
     joke : "",
@@ -18,41 +22,40 @@ const reportAcudits: {
     date : ""
 }
 
-let reportJokes: { joke: string; score: number; date: string }[] = []
+let reportJokes: { joke: string; score: number | string; date: string }[] = []
 
 const getWheater = async () => {
-    const response = await fetch("http://api.weatherapi.com/v1/current.json?key=7bc335c15ed64584a45120452241902&q=barcelona&aqi=no")
+    const response = await fetch(urlWeather)
     const data = await response.json()
     textWeather.textContent=data.location.name
     iconWeather.setAttribute("src", data.current.condition.icon)
-    console.log(data.location.name)
+    degrees.textContent=`${data.current.temp_c} °C`
 
 }
 
-const getScore = (num: number) => {
+const getScore = (num: number): void => {
     youVoted = true
-    let date = new Date
     reportAcudits.score = num
-    reportAcudits.date = date.toISOString()
-  
 }
 
 const getJoke = async () => {
     getWheater()
-    const result = await fetch("https://icanhazdadjoke.com/slack")
+    let date = new Date
+    const result = await fetch(urlNorris)
     const data = await result.json()
-    const joke:string = data.attachments[0].fallback
+    const joke:string = data.value
     printJoke.innerHTML=joke
     reportAcudits.joke = joke
+    reportAcudits.date = date.toISOString()
     youVoted = false
-  
+    console.log(joke)
 }
 
 getJoke()
 
 const saveAndNaextJoke = () => {
     if(!youVoted){
-        reportAcudits.score = 0
+        reportAcudits.score = "No votat"
         reportJokes.push({...reportAcudits})
     }else{
         reportJokes.push({...reportAcudits})
