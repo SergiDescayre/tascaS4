@@ -14,8 +14,7 @@ const textWeather = document.querySelector(".weather span");
 const iconWeather = document.querySelector(".weather img");
 const degrees = document.querySelector(".degrees");
 const urlWeather = "http://api.weatherapi.com/v1/current.json?key=7bc335c15ed64584a45120452241902&q=barcelona&aqi=no";
-const urlJokes = "https://icanhazdadjoke.com/slack";
-const urlNorris = "https://api.chucknorris.io/jokes/random";
+const urlJokes = ["https://icanhazdadjoke.com/slack", "https://api.chucknorris.io/jokes/random", "https://v2.jokeapi.dev/joke/Any?type=single"];
 let youVoted = false;
 const reportAcudits = {
     joke: "",
@@ -35,19 +34,27 @@ const getScore = (num) => {
     reportAcudits.score = num;
 };
 const getJoke = () => __awaiter(void 0, void 0, void 0, function* () {
-    getWheater();
+    let joke = "";
+    let urlRandom = Math.floor(Math.random() * 3);
     let date = new Date;
-    const result = yield fetch(urlNorris);
+    const result = yield fetch(urlJokes[urlRandom]);
     const data = yield result.json();
-    const joke = data.value;
+    if (urlRandom === 0) {
+        joke = data.attachments[0].fallback;
+    }
+    if (urlRandom === 1) {
+        joke = data.value;
+    }
+    if (urlRandom === 2) {
+        joke = data.joke;
+    }
     printJoke.innerHTML = joke;
     reportAcudits.joke = joke;
     reportAcudits.date = date.toISOString();
     youVoted = false;
     console.log(joke);
 });
-getJoke();
-const saveAndNaextJoke = () => {
+const saveAndNextJoke = () => {
     if (!youVoted) {
         reportAcudits.score = "No votat";
         reportJokes.push(Object.assign({}, reportAcudits));
@@ -58,4 +65,6 @@ const saveAndNaextJoke = () => {
     getJoke();
     console.log(reportJokes);
 };
-nextJoke.addEventListener('click', saveAndNaextJoke);
+getJoke();
+getWheater();
+nextJoke.addEventListener('click', saveAndNextJoke);
