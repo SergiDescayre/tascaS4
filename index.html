@@ -5,33 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <title>Tasca 4</title>
-    
 </head>
 <body>
-    <div class="container pt-5">
+
+    <div class="main_container container">
         <div class="weather">
-            <span>Girona</span>
-            <img src=".." alt="icon">
-            <span class="degrees"></span>
-        </div>
-         <div class="container card text-center shadow pt-4 mt-5 w-50 ">
-            <h3>Ready to laught? 🤣 </h3>
-            <div class="row mt-3 mx-auto container_emojis">
-                <div class="col ">
-                    <span onclick=getScore(1)>🙁</span>
+            <div class="icon_weather">
+                <div class="img">
+                    <img src=".." alt="icon">
                 </div>
-                <div class="col">
-                    <span onclick=getScore(2)>😐</span>
-                </div>
-                <div class="col">
-                    <span onclick=getScore(3)>😀</span>
-                </div>
+                <span class="degrees"></span>
             </div>
-            <p class="joke container mt-4"></p>
-            <button class="btn btn-outline-primary btn-sm mb-4 next-joke mx-auto">Next</button>
+            <div class="back_left">
+                <img src="./images/fondo.svg" alt="litle">
+            </div>
         </div>
 
+        <div class="info_joke">
+            <h3>Preparats per riure?</h3>
+            <div class="container_emojis">
+                    <span onclick=getScore(1)>🙁</span>
+                    <span onclick=getScore(2)>😐</span>
+                    <span onclick=getScore(3)>😀</span>
+            </div>
+            <div class="joke mx-auto"></div>
+            <button class="next-joke mx-auto">Següent acudit</button>
+        </div>
+        <div class="back_right">
+            <img src="./images/fondo.svg" alt="litle">
+        </div>
     </div>
+
+
+
+    
     
     <script src="./build/index.js"></script>
 </body>

@@ -10,7 +10,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 const nextJoke = document.querySelector(".next-joke");
 const printJoke = document.querySelector(".joke");
-const textWeather = document.querySelector(".weather span");
 const iconWeather = document.querySelector(".weather img");
 const degrees = document.querySelector(".degrees");
 const urlWeather = "http://api.weatherapi.com/v1/current.json?key=7bc335c15ed64584a45120452241902&q=barcelona&aqi=no";
@@ -25,7 +24,6 @@ let reportJokes = [];
 const getWheater = () => __awaiter(void 0, void 0, void 0, function* () {
     const response = yield fetch(urlWeather);
     const data = yield response.json();
-    textWeather.textContent = data.location.name;
     iconWeather.setAttribute("src", data.current.condition.icon);
     degrees.textContent = `${data.current.temp_c} °C`;
 });

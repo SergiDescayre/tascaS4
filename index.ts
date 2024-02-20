@@ -2,7 +2,6 @@
 const nextJoke = document.querySelector(".next-joke") as HTMLButtonElement
 const printJoke = document.querySelector(".joke") as HTMLParagraphElement
 
-const textWeather = document.querySelector(".weather span") as HTMLHtmlElement
 const iconWeather = document.querySelector(".weather img") as HTMLHtmlElement
 const degrees = document.querySelector(".degrees") as HTMLHtmlElement
 
@@ -26,7 +25,6 @@ let reportJokes: { joke: string; score: number | string; date: string }[] = []
 const getWheater = async () => {
     const response = await fetch(urlWeather)
     const data = await response.json()
-    textWeather.textContent = data.location.name
     iconWeather.setAttribute("src", data.current.condition.icon)
     degrees.textContent = `${data.current.temp_c} °C`
 
