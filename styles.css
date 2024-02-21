@@ -1,16 +1,24 @@
 @charset "UTF-8";
+body {
+  margin: 0;
+  box-sizing: border-box;
+}
+
 .main_container {
-  background-image: url("./images/fondo.svg");
-  background-repeat: no-repeat;
-  background-position: center;
   display: flex;
   justify-content: space-between;
+}
+.main_container .img_central {
+  width: 700px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .main_container .weather {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  width: 10%;
   justify-content: space-between;
 }
 .main_container .weather .icon_weather {
@@ -19,17 +27,23 @@
   gap: 10px;
 }
 .main_container .weather .icon_weather .img img {
-  width: 100px;
-  border-right: 4px solid black;
+  width: 60px;
+  border-right: 4px solid rgb(110, 109, 109);
   margin-top: 10px;
 }
+.main_container .weather .icon_weather .degrees {
+  font-weight: bold;
+  color: rgb(110, 109, 109);
+}
 .main_container .weather .back_left img {
-  width: 100px;
+  width: 150px;
 }
 .main_container .info_joke {
+  z-index: 2;
   color: white;
   align-self: center;
   text-align: center;
+  width: 300px;
   display: flex;
   gap: 30px;
   flex-direction: column;
@@ -50,10 +64,32 @@
   width: 10%;
 }
 .main_container .back_right img {
-  width: 100px;
+  width: 150px;
 }
-.main_container .joke {
-  width: 390px;
+@media (max-width: 1024px) {
+  .main_container .img_central {
+    width: 675px;
+    top: 50%;
+    left: 52%;
+  }
+}
+@media (max-width: 768px) {
+  .main_container .img_central {
+    width: 675px;
+    top: 50%;
+    left: 55%;
+  }
+}
+@media (max-width: 425px) {
+  .main_container .main_container {
+    background-color: #444CF7;
+  }
+  .main_container .main_container .img_central {
+    display: none;
+  }
+  .main_container .back_right, .main_container .back_left {
+    display: none;
+  }
 }
 
 /*!

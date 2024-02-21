@@ -1,15 +1,22 @@
+body{
+    margin:0;
+    box-sizing: border-box; 
+}
 
 .main_container{
-    background-image: url("./images/fondo.svg");
-    background-repeat: no-repeat;
-    background-position: center;
     display: flex;
     justify-content: space-between;
+    .img_central{
+        width: 700px;
+        position:absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
     .weather{
         display: flex;
         flex-direction: column;
         height: 100vh;
-        width: 10%;
         justify-content: space-between;
 
         .icon_weather{
@@ -17,25 +24,31 @@
             align-items: center;
             gap:10px;
                 .img{
-                  
                         img{
-                            width: 100px;
-                            border-right: 4px solid black;
+                            width: 60px;
+                            border-right: 4px solid rgb(110, 109, 109);
                             margin-top: 10px;
                         }
+                }
+
+                .degrees{
+                    font-weight: bold;
+                    color: rgb(110, 109, 109)
                 }
         }
         .back_left{
                 img{
-                    width: 100px
+                    width: 150px
                 };
         }
     }
 
     .info_joke{
+        z-index:2;
         color:white;
         align-self: center;
         text-align: center;
+        width: 300px;
         display: flex;
         gap:30px;
         flex-direction:column;
@@ -61,17 +74,37 @@
     .back_right{
         width: 10%;
                 img{
-                    width: 100px
+                    width: 150px
                 };
     }
-    .joke{
-        width: 390px;
+    
+    @media (max-width:1024px){
+        .img_central{
+            width: 675px;
+            top: 50%;
+            left: 52%;
+        }
     }
+    @media (max-width:768px){
+        .img_central{
+            width: 675px;
+            top: 50%;
+            left: 55%;
+        }
+    }
+    @media (max-width:425px){
+        .main_container{
+            background-color: #444CF7;
+            .img_central{
+                
+                display:none;
+            }
+        }
+        .back_right , .back_left{
+            display:none;
+        }
+    }
+    
 }
-
-
-
-
-
 
 @import "./node_modules/bootstrap/scss/bootstrap.scss"
