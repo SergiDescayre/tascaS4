@@ -5,6 +5,11 @@ const printJoke = document.querySelector(".joke") as HTMLParagraphElement
 const iconWeather = document.querySelector(".weather img") as HTMLHtmlElement
 const degrees = document.querySelector(".degrees") as HTMLHtmlElement
 
+const main_container = document.querySelector(".main_container") as HTMLDivElement
+
+const images:string[] = ['../images/fondo.svg','../images/fondo2.svg','../images/fondo3.svg','../images/fondo4.svg','../images/fondo5.svg','../images/fondo6.svg']
+
+
 const urlWeather: string = "http://api.weatherapi.com/v1/current.json?key=7bc335c15ed64584a45120452241902&q=barcelona&aqi=no"
 const urlJokes: string[] = ["https://icanhazdadjoke.com/slack","https://api.chucknorris.io/jokes/random","https://v2.jokeapi.dev/joke/Any?type=single"]
 
@@ -21,6 +26,7 @@ const reportAcudits: {
 }
 
 let reportJokes: { joke: string; score: number | string; date: string }[] = []
+
 
 const getWheater = async () => {
     const response = await fetch(urlWeather)
@@ -59,7 +65,7 @@ const getJoke = async () => {
 }
 
 const saveAndNextJoke = () => {
-    
+    main_container.style.backgroundImage = `url(${images[Math.floor(Math.random()*6)]})`
     if (!youVoted) {
         reportAcudits.score = "No votat"
         reportJokes.push({ ...reportAcudits })
