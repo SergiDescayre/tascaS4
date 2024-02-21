@@ -14,6 +14,9 @@
 .main_container .container_info_joke .info_joke .joke {
   max-width: 400px;
 }
+.main_container .container_info_joke .info_joke .container_emojis span {
+  cursor: pointer;
+}
 .main_container .container_info_joke .info_joke button {
   padding: 7px 15px;
   border-radius: 20px;
