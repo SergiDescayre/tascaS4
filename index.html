@@ -7,32 +7,41 @@
     <title>Tasca 4</title>
 </head>
 <body>
-    <div class="main_container container">
-        <img class="img_central" src="./images/fondo.svg" alt="fondo">
-        <div class="weather">
-            <div class="icon_weather">
-                <div class="img">
-                    <img src=".." alt="icon">
+    <div class="container main_container">
+        <div class="row">
+            <div class="col-2">
+                <div class="weather d-flex flex-column justify-content-between vh-100">
+                    <div class="icon_weather d-flex align-items-center mt-3">
+                        <div class="img border-end border-3 border-dark">
+                            <img src=".." alt="icon">
+                        </div>
+                        <span class="degrees ms-2 fw-bold"></span>
+                    </div>
+                    <div class="back_left">
+                        <img src="./images/fondo.svg" alt="litle">
+                    </div>
                 </div>
-                <span class="degrees"></span>
             </div>
-            <div class="back_left">
-                <img src="./images/fondo.svg" alt="litle">
+            <div class="col-8 container_info_joke">
+                <div class="info_joke d-flex flex-column align-items-center gap-4 vh-100">
+                    <h3>Preparats per riure?</h3>
+                    <div class="container_emojis">
+                            <span class="fs-1" onclick=getScore(1)>🙁</span>
+                            <span class="fs-1" onclick=getScore(2)>😐</span>
+                            <span class="fs-1" onclick=getScore(3)>😀</span>
+                    </div>
+                    <div class="joke text-center"></div>
+                    <button class="next-joke mx-auto">Següent acudit</button>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="back_right">
+                    <img src="./images/fondo.svg" alt="litle">
+                </div>
             </div>
         </div>
-        <div class="info_joke">
-            <h3>Preparats per riure?</h3>
-            <div class="container_emojis">
-                    <span onclick=getScore(1)>🙁</span>
-                    <span onclick=getScore(2)>😐</span>
-                    <span onclick=getScore(3)>😀</span>
-            </div>
-            <div class="joke mx-auto"></div>
-            <button class="next-joke mx-auto">Següent acudit</button>
-        </div>
-        <div class="back_right">
-            <img src="./images/fondo.svg" alt="litle">
-        </div>
+
+
     </div>
     <script src="./build/index.js"></script>
 </body>
