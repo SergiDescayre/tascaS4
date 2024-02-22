@@ -27,6 +27,19 @@ const reportAcudits: {
 
 let reportJokes: { joke: string; score: number | string; date: string }[] = []
 
+let imageToShow: number = -1
+
+const generateRandom = () => {
+
+    let numRandom: number = 0
+    
+    do{
+        numRandom = Math.floor(Math.random()*images.length)
+    }while(numRandom===imageToShow)
+
+    imageToShow = numRandom
+    return imageToShow
+}
 
 const getWheater = async () => {
     const response = await fetch(urlWeather)
@@ -65,7 +78,7 @@ const getJoke = async () => {
 }
 
 const saveAndNextJoke = () => {
-    main_container.style.backgroundImage = `url(${images[Math.floor(Math.random()*6)]})`
+    main_container.style.backgroundImage = `url(${images[generateRandom()]})`
     if (!youVoted) {
         reportAcudits.score = "No votat"
         reportJokes.push({ ...reportAcudits })

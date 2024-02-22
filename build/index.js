@@ -23,6 +23,15 @@ const reportAcudits = {
     date: ""
 };
 let reportJokes = [];
+let imageToShow = -1;
+const generateRandom = () => {
+    let numRandom = 0;
+    do {
+        numRandom = Math.floor(Math.random() * images.length);
+    } while (numRandom === imageToShow);
+    imageToShow = numRandom;
+    return imageToShow;
+};
 const getWheater = () => __awaiter(void 0, void 0, void 0, function* () {
     const response = yield fetch(urlWeather);
     const data = yield response.json();
@@ -55,7 +64,7 @@ const getJoke = () => __awaiter(void 0, void 0, void 0, function* () {
     console.log(joke);
 });
 const saveAndNextJoke = () => {
-    main_container.style.backgroundImage = `url(${images[Math.floor(Math.random() * 6)]})`;
+    main_container.style.backgroundImage = `url(${images[generateRandom()]})`;
     if (!youVoted) {
         reportAcudits.score = "No votat";
         reportJokes.push(Object.assign({}, reportAcudits));
